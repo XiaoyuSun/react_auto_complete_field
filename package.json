@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo I will add testing cases later.",
-    "start": "webpack-dev-server"
+    "start": "babel-node node_modules/webpack-dev-server/bin/webpack-dev-server"
   },
   "author": "xiaoyu",
   "license": "ISC",

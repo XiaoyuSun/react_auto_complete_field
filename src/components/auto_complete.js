@@ -1,19 +1,13 @@
 import AutoCompleteItem from './auto_complete_item';
-import React, {Component, PropTypes} from 'react';
+import { useState } from 'react';
 import Words from '../data/words';
 
-class AutoComplete extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showUpWords: Words,
-      defaultValue: ''
-    };
-    this.onChange = this.onChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
+const AutoComplete = () => {
+  const {showupWords, setShowupWords} = useState(Words);
+  const {defaultValue, setDefaultValue} = useState('');
+  
 
-  onChange(event) {
+  onChange = (event) => {
     let matchedWord = [];
     let inputText = event.target.value;
     for (let i = 0; i < Words.length; ++i) {
@@ -24,31 +18,25 @@ class AutoComplete extends Component {
     if (matchedWord.length == 1) {
       inputText = matchedWord[0];
     };
-    this.setState({
-      showUpWords: matchedWord,
-      defaultValue: inputText
-    });
+    setShowupWords(matchedWord);
+    setDefaultValue(inputText);
   }
 
-  handleClick() {
-    this.setState({
-      showUpWords: Words,
-      defaultValue: ''
-    });
+  handleClick = () => {
+    setShowupWords(Words);
+    setDefaultValue('');
   }
 
-  render() {
-    return (
-      <div>
-        <input
-          onChange={this.onChange}
-          value={this.state.defaultValue}
-        />
-        <button onClick={this.handleClick}>clear</button>
-        <AutoCompleteItem words={this.state.showUpWords} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <input
+        onChange={this.onChange}
+        value={this.state.defaultValue}
+      />
+      <button onClick={this.handleClick}>clear</button>
+      <AutoCompleteItem words={this.state.showUpWords} />
+    </div>
+  );
 }
 
 export default AutoComplete;

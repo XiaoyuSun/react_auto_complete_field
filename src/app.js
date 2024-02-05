@@ -1,4 +1,5 @@
-import AutoComplete from "./auto_complete";
+import React from 'react';
+import AutoComplete from "./components/auto_complete";
 
 export default function MyApp() {
     return (

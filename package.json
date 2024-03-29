@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo I will add testing cases later.",
     "dev": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack build",
+    "deploy": "gh-pages -d build"
   },
   "author": "xiaoyu",
   "license": "ISC",

@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   entry: "/src/index.js", // main js
   output: {
-    path: path.resolve(__dirname, "dist"), // output folder
+    path: path.resolve(__dirname, "build"), // output folder
     publicPath: "/",
   },
   devServer: {

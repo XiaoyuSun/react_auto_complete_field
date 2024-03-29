@@ -1,11 +1,19 @@
-import AutoCompleteItem from './auto_complete_item';
-import React, { useState } from 'react';
-import Words from '../data/words';
+import AutoCompleteItem from "./auto_complete_item";
+import React, { useEffect, useState } from "react";
+import getWords from "../data/words";
 
 const AutoComplete = () => {
-  const [showupWords, setShowupWords] = useState(Words);
-  const [defaultValue, setDefaultValue] = useState('');
-  
+  const [Words, setWords] = useState([]);
+  const [showupWords, setShowupWords] = useState([]);
+  const [defaultValue, setDefaultValue] = useState("");
+
+  useEffect(() => {
+    getWords().then((words) => {
+      setWords(words);
+      setShowupWords(words);
+      console.log(words);
+    });
+  }, []);
 
   const onChange = (event) => {
     let matchedWord = [];
@@ -15,30 +23,27 @@ const AutoComplete = () => {
       if (Words[i].indexOf(inputText) >= 0) {
         matchedWord.push(Words[i]);
       }
-    };
+    }
     if (matchedWord.length == 1) {
       inputText = matchedWord[0];
-    };
-    
+    }
+
     setShowupWords(matchedWord);
     setDefaultValue(inputText);
-  }
+  };
 
   const handleClick = () => {
     setShowupWords(Words);
-    setDefaultValue('');
-  }
+    setDefaultValue("");
+  };
 
   return (
     <div>
-      <input
-        onChange={onChange}
-        value={defaultValue}
-      />
+      <input onChange={onChange} value={defaultValue} />
       <button onClick={handleClick}>clear</button>
       <AutoCompleteItem words={showupWords} />
     </div>
   );
-}
+};
 
 export default AutoComplete;

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://xiaoyusun.github.io/react_auto_complete_field/",
   "name": "react_form",
   "version": "1.0.0",
   "description": "",
@@ -6,6 +7,7 @@
   "scripts": {
     "test": "echo I will add testing cases later.",
     "dev": "webpack-dev-server",
+    "predeploy": "npm run build",
     "build": "webpack build",
     "deploy": "gh-pages -d build"
   },
